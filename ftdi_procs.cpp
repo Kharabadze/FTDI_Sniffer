@@ -42,6 +42,25 @@ typedef FT_STATUS _stdcall (*ft_h_pftpd_pc_pc_pc_pc)(FT_HANDLE, PFT_PROGRAM_DATA
 typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 			char*, char*, void*
 		);
+		
+//-------------WIN32		
+typedef FT_HANDLE _stdcall (*fth_pcc_d_d_psa_d_d_h)(
+			const char*,DWORD,DWORD,SECURITY_ATTRIBUTES*,
+			DWORD,DWORD,HANDLE
+		);
+
+typedef BOOL _stdcall (*ftb_fth)(FT_HANDLE);
+
+typedef	BOOL _stdcall (*ftb_fth_p_d_pd_po)(
+			FT_HANDLE,void*,DWORD,
+			DWORD*,LPOVERLAPPED
+		);
+		
+typedef DWORD _stdcall (*ftd_fth)(FT_HANDLE);
+
+typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
+			FT_HANDLE, LPOVERLAPPED, DWORD*, BOOL
+		);
 
 //----------------------------------------------------------------------------
 /*
@@ -772,7 +791,14 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		HANDLE					hTemplate
 		){
         	PROCSTART;
+        	fth_pcc_d_d_psa_d_d_h a = (fth_pcc_d_d_psa_d_d_h)procedures[42];
+        	FT_HANDLE rez2 = a(
+				lpszName, dwAccess, dwShareMode,
+				lpSecurityAttributes, dwCreate,
+				dwAttrsAndFlags, hTemplate
+			);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -780,7 +806,10 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ftb_fth a = (ftb_fth)procedures[43];
+        	BOOL rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -792,7 +821,13 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		LPOVERLAPPED lpOverlapped
 		){
         	PROCSTART;
+        	ftb_fth_p_d_pd_po a = (ftb_fth_p_d_pd_po)procedures[44];
+        	BOOL rez2 = a(
+				ftHandle,lpBuffer,nBufferSize,
+				lpBytesReturned,lpOverlapped
+			);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -804,7 +839,13 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		LPOVERLAPPED lpOverlapped
 		){
         	PROCSTART;
+        	ftb_fth_p_d_pd_po a = (ftb_fth_p_d_pd_po)procedures[45];
+        	BOOL rez2 = a(
+				ftHandle,lpBuffer,nBufferSize,
+				lpBytesWritten,lpOverlapped
+			);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -812,7 +853,10 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ftd_fth a = (ftd_fth)procedures[53];
+        	DWORD rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -823,7 +867,13 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		BOOL bWait
 		){
         	PROCSTART;
+        	ftb_fth_po_pd_b a = (ftb_fth_po_pd_b)procedures[46];
+        	BOOL rez2 = a(
+				ftHandle,lpOverlapped,
+				lpdwBytesTransferred,bWait
+			);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -831,7 +881,10 @@ typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ftb_fth a = (ftb_fth)procedures[62];
+        	BOOL rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 
