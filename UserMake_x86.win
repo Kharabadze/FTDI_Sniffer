@@ -1,0 +1,36 @@
+# Project: FTDI_Sniffer
+# Makefile created by Dev-C++ 5.8.0
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = temp/dllmain.o temp/llib_work.o temp/ftdi_procs.o
+LINKOBJ  = temp/dllmain.o temp/llib_work.o temp/ftdi_procs.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
+BIN      = FTD2XX.dll
+CXXFLAGS = $(CXXINCS) -m32 -DBUILDING_DLL=1
+CFLAGS   = $(INCS) -m32 -DBUILDING_DLL=1
+RM       = rm.exe -f
+DEF      = libFTDI_Sniffer.def
+STATIC   = libFTDI_Sniffer.a
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN) $(DEF) $(STATIC)
+
+$(BIN): $(LINKOBJ)
+	$(CPP) -shared $(LINKOBJ) -o $(BIN) $(LIBS) -Wl,Sniffer_x86.def,--out-implib,$(STATIC)
+
+temp/dllmain.o: dllmain.cpp
+	$(CPP) -c dllmain.cpp -o temp/dllmain.o $(CXXFLAGS)
+
+temp/llib_work.o: llib_work.cpp
+	$(CPP) -c llib_work.cpp -o temp/llib_work.o $(CXXFLAGS)
+
+temp/ftdi_procs.o: ftdi_procs.cpp
+	$(CPP) -c ftdi_procs.cpp -o temp/ftdi_procs.o $(CXXFLAGS)
