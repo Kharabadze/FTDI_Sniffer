@@ -51,9 +51,36 @@ typedef FT_HANDLE _stdcall (*fth_pcc_d_d_psa_d_d_h)(
 
 typedef BOOL _stdcall (*ftb_fth)(FT_HANDLE);
 
+typedef	BOOL _stdcall (*ftb_fth_d)(
+			FT_HANDLE, DWORD
+		);
+
+typedef	BOOL _stdcall (*ftb_fth_pd)(
+			FT_HANDLE, LPDWORD
+		);
+
+typedef	BOOL _stdcall (*ftb_fth_pfdcb)(
+			FT_HANDLE, LPFTDCB
+		);
+typedef	BOOL _stdcall (*ftb_fth_pftimeouts)(
+			FT_HANDLE, FTTIMEOUTS*
+		);
+
+typedef	BOOL _stdcall (*ftb_fth_d_d)(
+			FT_HANDLE, DWORD, DWORD
+		);
+
+typedef	BOOL _stdcall (*ftb_fth_d_po)(
+			FT_HANDLE, PULONG, LPOVERLAPPED
+		);
+
+typedef BOOL _stdcall (*ftb_fth_pd_pcs)(
+			FT_HANDLE, LPDWORD,	LPFTCOMSTAT
+		);
+
 typedef	BOOL _stdcall (*ftb_fth_p_d_pd_po)(
-			FT_HANDLE,void*,DWORD,
-			DWORD*,LPOVERLAPPED
+			FT_HANDLE, void*,DWORD,
+			DWORD*, LPOVERLAPPED
 		);
 		
 typedef DWORD _stdcall (*ftd_fth)(FT_HANDLE);
@@ -898,7 +925,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ftb_fth a = (ftb_fth)procedures[47];
+        	BOOL rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -908,7 +938,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPFTCOMSTAT lpftComstat
 		){
         	PROCSTART;
+        	ftb_fth_pd_pcs a = (ftb_fth_pd_pcs)procedures[48];
+        	BOOL rez2 = a(ftHandle,lpdwErrors,lpftComstat);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -917,7 +950,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		DWORD dwFunc
 		){
         	PROCSTART;
+        	ftb_fth a = (ftb_fth)procedures[49];
+        	BOOL rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -926,7 +962,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwModemStatus
 		){
         	PROCSTART;
+        	ftb_fth_pd a = (ftb_fth_pd)procedures[50];
+        	BOOL rez2 = a(ftHandle, lpdwModemStatus);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -935,7 +974,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPFTDCB lpftDcb
 		){
         	PROCSTART;
+        	ftb_fth_pfdcb a = (ftb_fth_pfdcb)procedures[51];
+        	BOOL rez2 = a(ftHandle, lpftDcb);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -944,7 +986,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FTTIMEOUTS *pTimeouts
 		){
         	PROCSTART;
+        	ftb_fth_pftimeouts a = (ftb_fth_pftimeouts)procedures[52];
+        	BOOL rez2 = a(ftHandle, pTimeouts);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -953,7 +998,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		DWORD dwMask
 		){
         	PROCSTART;
+        	ftb_fth_d a = (ftb_fth_d)procedures[54];
+        	BOOL rez2 = a(ftHandle, dwMask);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -961,7 +1009,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ftb_fth a = (ftb_fth)procedures[55];
+        	BOOL rez2 = a(ftHandle);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -970,7 +1021,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		ULONG ulEventMask
 		){
         	PROCSTART;
+        	ftb_fth_d a = (ftb_fth_d)procedures[56];
+        	BOOL rez2 = a(ftHandle, ulEventMask);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -979,7 +1033,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwEventMask
 		){
         	PROCSTART;
+        	ftb_fth_pd a = (ftb_fth_pd)procedures[77];
+        	BOOL rez2 = a(ftHandle, lpdwEventMask);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -988,7 +1045,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPFTDCB lpftDcb
 		){
         	PROCSTART;
+        	ftb_fth_pfdcb a = (ftb_fth_pfdcb)procedures[57];
+        	BOOL rez2 = a(ftHandle, lpftDcb);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -997,7 +1057,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FTTIMEOUTS *pTimeouts
 		){
         	PROCSTART;
+        	ftb_fth_pftimeouts a = (ftb_fth_pftimeouts)procedures[58];
+        	BOOL rez2 = a(ftHandle, pTimeouts);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -1007,7 +1070,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		DWORD dwWriteBufferSize
 		){
         	PROCSTART;
+        	ftb_fth_d_d a = (ftb_fth_d_d)procedures[59];
+        	BOOL rez2 = a(ftHandle, dwReadBufferSize, dwWriteBufferSize);
         	PROCFINISH;
+        	return rez2;
         }
 
 	FTD2XX_API
@@ -1017,7 +1083,10 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPOVERLAPPED lpOverlapped
 		){
         	PROCSTART;
+        	ftb_fth_d_po a = (ftb_fth_d_po)procedures[60];
+        	BOOL rez2 = a(ftHandle, pulEvent, lpOverlapped);
         	PROCFINISH;
+        	return rez2;
         }
 
 
