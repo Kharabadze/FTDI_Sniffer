@@ -10,12 +10,17 @@ typedef FT_STATUS _stdcall (*ft_h)(FT_HANDLE);
 typedef FT_STATUS _stdcall (*ft_i_h)(int,FT_HANDLE);
 typedef FT_STATUS _stdcall (*ft_p_d_ph)(PVOID,DWORD,FT_HANDLE*);
 typedef FT_STATUS _stdcall (*ft_p_p_d)(PVOID,PVOID,DWORD);
+typedef FT_STATUS _stdcall (*ft_pd)(DWORD*);
 
 typedef FT_STATUS _stdcall (*ft_h_b)(FT_HANDLE,UCHAR);
 typedef FT_STATUS _stdcall (*ft_h_d)(FT_HANDLE,DWORD);
 typedef FT_STATUS _stdcall (*ft_h_w)(FT_HANDLE,WORD);
 typedef FT_STATUS _stdcall (*ft_h_pb)(FT_HANDLE,UCHAR*);
 typedef FT_STATUS _stdcall (*ft_h_pd)(FT_HANDLE,DWORD*);
+typedef FT_STATUS _stdcall (*ft_pdlin_pd)(
+			FT_DEVICE_LIST_INFO_NODE*, DWORD*
+		);
+
 
 typedef FT_STATUS _stdcall (*ft_h_b_b)(FT_HANDLE,UCHAR,UCHAR);
 typedef FT_STATUS _stdcall (*ft_h_d_w)(FT_HANDLE,DWORD,WORD);
@@ -36,11 +41,17 @@ typedef FT_STATUS _stdcall (*ft_h_p_d_pc_pc_pc_pc)(FT_HANDLE,void*,DWORD,char*,c
         	
 
 typedef FT_STATUS _stdcall (*ft_h_pftpd)(FT_HANDLE, PFT_PROGRAM_DATA);
-typedef FT_STATUS _stdcall (*ft_h_pftpd_pc_pc_pc_pc)(FT_HANDLE, PFT_PROGRAM_DATA,
+typedef FT_STATUS _stdcall (*ft_h_pftpd_pc_pc_pc_pc)(
+			FT_HANDLE, PFT_PROGRAM_DATA,
 			char*, char*, char*, char*
 		);
-typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(FT_HANDLE, DWORD*, DWORD*,
+typedef FT_STATUS _stdcall (*ft_h_pd_pd_pc_pc_p)(
+			FT_HANDLE, DWORD*, DWORD*,
 			char*, char*, void*
+		);
+typedef	FT_STATUS _stdcall (*ft_d_pd_pd_pd_pd_p_p_ph)(
+			DWORD, LPDWORD, LPDWORD, LPDWORD, LPDWORD,
+			LPVOID,	LPVOID,	FT_HANDLE*
 		);
 		
 //-------------WIN32		
@@ -1100,6 +1111,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwNumDevs
 		){
         	PROCSTART;
+        	ft_pd a = (ft_pd)procedures[70];
+        	rezult = a(lpdwNumDevs);
         	PROCFINISH;
         	return rezult;
         }
@@ -1110,6 +1123,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwNumDevs
 		){
         	PROCSTART;
+        	ft_pdlin_pd a = (ft_pdlin_pd)procedures[71];
+        	rezult = a(pDest, lpdwNumDevs);
         	PROCFINISH;
         	return rezult;
         }
@@ -1126,6 +1141,12 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FT_HANDLE *pftHandle
 		){
         	PROCSTART;
+        	ft_d_pd_pd_pd_pd_p_p_ph a = (ft_d_pd_pd_pd_pd_p_p_ph)procedures[72];
+        	rezult = a(
+				dwIndex, lpdwFlags, lpdwType,
+				lpdwID, lpdwLocId, lpSerialNumber,
+				lpDescription, pftHandle
+			);
         	PROCFINISH;
         	return rezult;
         }
