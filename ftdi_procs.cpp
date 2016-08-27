@@ -6,8 +6,11 @@
 
 #define FTD2XX_API
 //----------------------------------------------------------------------------
+typedef	FT_STATUS _stdcall (*ft_v)(void);
+
 typedef FT_STATUS _stdcall (*ft_h)(FT_HANDLE);
 typedef FT_STATUS _stdcall (*ft_i_h)(int,FT_HANDLE);
+typedef FT_STATUS _stdcall (*ft_w_w)(WORD,WORD);
 typedef FT_STATUS _stdcall (*ft_p_d_ph)(PVOID,DWORD,FT_HANDLE*);
 typedef FT_STATUS _stdcall (*ft_p_p_d)(PVOID,PVOID,DWORD);
 typedef FT_STATUS _stdcall (*ft_pd)(DWORD*);
@@ -17,25 +20,38 @@ typedef FT_STATUS _stdcall (*ft_h_d)(FT_HANDLE,DWORD);
 typedef FT_STATUS _stdcall (*ft_h_w)(FT_HANDLE,WORD);
 typedef FT_STATUS _stdcall (*ft_h_pb)(FT_HANDLE,UCHAR*);
 typedef FT_STATUS _stdcall (*ft_h_pd)(FT_HANDLE,DWORD*);
+typedef FT_STATUS _stdcall (*ft_h_pl)(FT_HANDLE,LONG*);
 typedef FT_STATUS _stdcall (*ft_pdlin_pd)(
 			FT_DEVICE_LIST_INFO_NODE*, DWORD*
 		);
 
 
 typedef FT_STATUS _stdcall (*ft_h_b_b)(FT_HANDLE,UCHAR,UCHAR);
+typedef FT_STATUS _stdcall (*ft_h_b_pb)(FT_HANDLE,UCHAR,UCHAR*);
 typedef FT_STATUS _stdcall (*ft_h_d_w)(FT_HANDLE,DWORD,WORD);
 typedef FT_STATUS _stdcall (*ft_h_d_d)(FT_HANDLE,DWORD,DWORD);
 typedef FT_STATUS _stdcall (*ft_h_d_p)(FT_HANDLE,DWORD,PVOID);
 typedef FT_STATUS _stdcall (*ft_h_d_pw)(FT_HANDLE,DWORD,WORD*);
 typedef FT_STATUS _stdcall (*ft_h_pb_d)(FT_HANDLE,BYTE*,DWORD);
+typedef FT_STATUS _stdcall (*ft_h_b_pw)(
+			FT_HANDLE, UCHAR, LPWORD
+		);
 
 typedef FT_STATUS _stdcall (*ft_h_b_b_b)(FT_HANDLE,BYTE,BYTE,BYTE);
 typedef FT_STATUS _stdcall (*ft_h_w_b_b)(FT_HANDLE,WORD,BYTE,BYTE);
 typedef FT_STATUS _stdcall (*ft_h_p_d_p)(FT_HANDLE,PVOID,DWORD,PVOID);
 typedef FT_STATUS _stdcall (*ft_h_pd_pd_pd)(FT_HANDLE,DWORD*,DWORD*,DWORD*);
 typedef FT_STATUS _stdcall (*ft_h_pb_d_pd)(FT_HANDLE,BYTE*,DWORD,DWORD*);
+typedef FT_STATUS _stdcall (*ft_h_b_pb_w)(
+			FT_HANDLE, UCHAR, UCHAR*, USHORT
+		);
 
 typedef FT_STATUS _stdcall (*ft_h_b_b_b_b)(FT_HANDLE,BYTE,BYTE,BYTE,BYTE);
+typedef FT_STATUS _stdcall (*ft_h_w_pb_w)(
+			FT_HANDLE, USHORT, UCHAR*, USHORT
+		);
+
+
 typedef FT_STATUS _stdcall (*ft_h_d_p_d_p_d_pd_po)(FT_HANDLE,DWORD,PVOID,DWORD,PVOID,DWORD,PDWORD,LPOVERLAPPED);
 typedef FT_STATUS _stdcall (*ft_h_p_d_pc_pc_pc_pc)(FT_HANDLE,void*,DWORD,char*,char*,char*,char*);
         	
@@ -1162,6 +1178,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwVersion
 		){
         	PROCSTART;
+        	ft_h_pd a = (ft_h_pd)procedures[75];
+        	rezult = a(ftHandle, lpdwVersion);
         	PROCFINISH;
         	return rezult;
         }
@@ -1171,6 +1189,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPDWORD lpdwVersion
 		){
         	PROCSTART;
+        	ft_pd a = (ft_pd)procedures[76];
+        	rezult = a(lpdwVersion);
         	PROCFINISH;
         	return rezult;
         }
@@ -1181,6 +1201,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		void
 		){
         	PROCSTART;
+        	ft_v a = (ft_v)procedures[78];
+        	rezult = a();
         	PROCFINISH;
         	return rezult;
         }
@@ -1191,6 +1213,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		WORD wPid
 		){
         	PROCSTART;
+        	ft_w_w a = (ft_w_w)procedures[79];
+        	rezult = a(wVid, wPid);
         	PROCFINISH;
         	return rezult;
         }
@@ -1201,6 +1225,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPLONG	lpdwComPortNumber
 		){
         	PROCSTART;
+        	ft_h_pl a = (ft_h_pl)procedures[80];
+        	rezult = a(ftHandle,lpdwComPortNumber);
         	PROCFINISH;
         	return rezult;
         }
@@ -1217,6 +1243,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		PUCHAR pucValue
 		){
         	PROCSTART;
+        	ft_h_b_pb a = (ft_h_b_pb)procedures[81];
+        	rezult = a(ftHandle, ucAddress, pucValue);
         	PROCFINISH;
         	return rezult;
         }
@@ -1228,6 +1256,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		UCHAR ucValue
 		){
         	PROCSTART;
+        	ft_h_b_b a = (ft_h_b_b)procedures[82];
+        	rezult = a(ftHandle, ucAddress, ucValue);
         	PROCFINISH;
         	return rezult;
         }
@@ -1239,6 +1269,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		LPWORD lpwValue
 		){
         	PROCSTART;
+        	ft_h_b_pw a = (ft_h_b_pw)procedures[83];
+        	rezult = a(ftHandle, ucOption, lpwValue);
         	PROCFINISH;
         	return rezult;
         }
@@ -1249,6 +1281,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		DWORD *dwRxBytes
 		){
         	PROCSTART;
+        	ft_h_pd a = (ft_h_pd)procedures[84];
+        	rezult = a(ftHandle, dwRxBytes);
         	PROCFINISH;
         	return rezult;
         }
@@ -1258,6 +1292,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ft_h a = (ft_h)procedures[87];
+        	rezult = a(ftHandle);
         	PROCFINISH;
         	return rezult;
         }
@@ -1267,6 +1303,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		FT_HANDLE ftHandle
 		){
         	PROCSTART;
+        	ft_h a = (ft_h)procedures[88];
+        	rezult = a(ftHandle);
         	PROCFINISH;
         	return rezult;
         }
@@ -1279,6 +1317,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		USHORT Len
 		){
         	PROCSTART;
+        	ft_h_b_pb_w a = (ft_h_b_pb_w)procedures[89];
+        	rezult = a(ftHandle, Request, Buf, Len);
         	PROCFINISH;
         	return rezult;
         }
@@ -1291,6 +1331,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		USHORT Len
 		){
         	PROCSTART;
+        	ft_h_b_pb_w a = (ft_h_b_pb_w)procedures[90];
+        	rezult = a(ftHandle, Request, Buf, Len);
         	PROCFINISH;
         	return rezult;
         }
@@ -1303,6 +1345,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		USHORT Len
 		){
         	PROCSTART;
+        	ft_h_w_pb_w a = (ft_h_w_pb_w)procedures[91];
+        	rezult = a(ftHandle, wValue, Buf, Len);
         	PROCFINISH;
         	return rezult;
         }
@@ -1315,6 +1359,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		USHORT Len
 		){
         	PROCSTART;
+        	ft_h_w_pb_w a = (ft_h_w_pb_w)procedures[92];
+        	rezult = a(ftHandle, wValue, Buf, Len);
         	PROCFINISH;
         	return rezult;
         }
@@ -1324,6 +1370,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 	FTD2XX_API
 		FT_STATUS WINAPI _FT_Initialise(void){
         	PROCSTART;
+        	ft_v a = (ft_v)procedures[93];
+        	rezult = a();
         	PROCFINISH;
         	return rezult;
 		}
@@ -1331,6 +1379,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 	FTD2XX_API
 		void WINAPI _FT_Finalise(void){
         	PROCSTART;
+        	ft_v a = (ft_v)procedures[74];
+        	rezult = a();
         	PROCFINISH;
         	return;
 		}
