@@ -12,6 +12,8 @@
 
 #include"lib_work.h"
 
+#include"out_file.h"
+
 #include<windows.h>
 #ifdef MAKE_DEF_FILE
 #include<stdio.h>
@@ -161,6 +163,9 @@ int init_library(void){
 #ifdef MAKE_DEF_FILE
 	make_def_file();
 #endif
+	
+	//--- External file
+	file_open();
 	
 	//procedures=new(void*[SIZE_OF_DLL]);
 	procedures[0]=(void*)new(HMODULE);

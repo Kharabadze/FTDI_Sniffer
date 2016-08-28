@@ -1,8 +1,11 @@
 #include"ftd2xx.h"
-#include"lib_work.h"
 
-#define PROCSTART FT_STATUS rezult=0;if(lib_non_init!=0xabcdef98)init_library();
-#define PROCFINISH ;//return rezult;
+#include"lib_work.h"
+#include"out_file.h"
+
+#define PROCSTART FT_STATUS rezult=0;if(lib_non_init!=0xabcdef98)init_library();file_process_func(__func__,true);
+
+#define PROCFINISH file_process_func(__func__,false);
 
 #define FTD2XX_API
 //----------------------------------------------------------------------------
@@ -685,7 +688,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_b a = (ft_h_b)procedures[29];
-        	rezult = a(ftHandle, ucLatency)
+        	rezult = a(ftHandle, ucLatency);
         	PROCFINISH;
         	return rezult;
         }
@@ -697,7 +700,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_pb a = (ft_h_pb)procedures[30];
-        	rezult = a(ftHandle, pucLatency)
+        	rezult = a(ftHandle, pucLatency);
         	PROCFINISH;
         	return rezult;
         }
@@ -710,7 +713,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_b_b a = (ft_h_b_b)procedures[31];
-        	rezult = a(ftHandle, ucMask, ucEnable)
+        	rezult = a(ftHandle, ucMask, ucEnable);
         	PROCFINISH;
         	return rezult;
         }
@@ -722,7 +725,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_pb a = (ft_h_pb)procedures[32];
-        	rezult = a(ftHandle, pucMode)
+        	rezult = a(ftHandle, pucMode);
         	PROCFINISH;
         	return rezult;
         }

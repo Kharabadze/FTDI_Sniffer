@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = temp/dllmain.o temp/llib_work.o temp/ftdi_procs.o
-LINKOBJ  = temp/dllmain.o temp/llib_work.o temp/ftdi_procs.o
+OBJ      = temp/dllmain.o temp/lib_work.o temp/ftdi_procs.o temp/out_file.o
+LINKOBJ  = temp/dllmain.o temp/lib_work.o temp/ftdi_procs.o temp/out_file.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
@@ -26,11 +26,14 @@ clean: clean-custom
 $(BIN): $(LINKOBJ)
 	$(CPP) -shared $(LINKOBJ) -o $(BIN) $(LIBS) -Wl,Sniffer_x86.def,--out-implib,$(STATIC)
 
+temp/out_file.o: out_file.cpp
+	$(CPP) -c out_file.cpp -o temp/out_file.o $(CXXFLAGS)
+
 temp/dllmain.o: dllmain.cpp
 	$(CPP) -c dllmain.cpp -o temp/dllmain.o $(CXXFLAGS)
 
-temp/llib_work.o: llib_work.cpp
-	$(CPP) -c llib_work.cpp -o temp/llib_work.o $(CXXFLAGS)
+temp/lib_work.o: lib_work.cpp
+	$(CPP) -c lib_work.cpp -o temp/lib_work.o $(CXXFLAGS)
 
 temp/ftdi_procs.o: ftdi_procs.cpp
 	$(CPP) -c ftdi_procs.cpp -o temp/ftdi_procs.o $(CXXFLAGS)
