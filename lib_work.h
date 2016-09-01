@@ -20,5 +20,5 @@ extern void *procedures[SIZE_OF_DLL];
 int init_library(void);
 int free_library(void);
 
-#define MAKE_DEF_FILE //uncomment to generate .def
+//#define MAKE_DEF_FILE //uncomment to generate .def
 
