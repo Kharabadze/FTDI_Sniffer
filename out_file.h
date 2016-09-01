@@ -1,6 +1,6 @@
 //=================================================================
 /// \file       out_file.h
-/// \brief      DLL for sniffer of FTDI FTD2XX
+/// \brief      Output file for sniffer of FTDI FTD2XX
 /// \author     David Kharabadze
 /// \version    16354a
 /// \copyright  GNU General Public License v.3

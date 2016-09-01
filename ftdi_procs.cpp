@@ -120,23 +120,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		);
 
 //----------------------------------------------------------------------------
-/*
-    FTD2XX_API
-        FT_STATUS WINAPI FT_Initialise(
-        void
-        ){
-        	PROCSTART;
-        	PROCFINISH;
-        }
 
-    FTD2XX_API
-        void WINAPI FT_Finalise(
-        void
-        ){
-        	PROCSTART;
-        	PROCFINISH;
-        }
-*/
 	FTD2XX_API
 		FT_STATUS WINAPI FT_Open(
 		int deviceNumber,
@@ -144,6 +128,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_i_h a = (ft_i_h)procedures[1];
+        	file_process_data10(__func__,"DeviceNumber = %i\n",deviceNumber);
         	rezult = a(deviceNumber, pHandle);
         	PROCFINISH;
         	return rezult;
@@ -195,8 +180,11 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_p_d_p a = (ft_h_p_d_p)procedures[3];
+			file_process_data10(__func__,"BytesToRead = %i\n", dwBytesToRead);
         	rezult = a(ftHandle,lpBuffer,dwBytesToRead,
 				lpBytesReturned);
+			file_process_data10(__func__,"BytesReturned = %i\n", *lpBytesReturned);
+			file_process_buffer16(__func__, *lpBytesReturned, (unsigned char *)lpBuffer);
         	PROCFINISH;
         	return rezult;
         }
@@ -210,10 +198,13 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_p_d_p a = (ft_h_p_d_p)procedures[4];
+			file_process_data10(__func__,"BytesToWrite = %i\n", dwBytesToWrite);
+			file_process_buffer16(__func__, dwBytesToWrite, (unsigned char *)lpBuffer);
         	rezult = a(
 				ftHandle, lpBuffer, dwBytesToWrite,
 				lpBytesWritten
 			);
+			file_process_data10(__func__,"BytesWritten = %i\n", *lpBytesWritten);
         	PROCFINISH;
         	return rezult;
         }
@@ -364,6 +355,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
         	PROCSTART;
         	ft_h_pd a = (ft_h_pd)procedures[14];
         	rezult = a(ftHandle,pModemStatus);
+        	file_process_data10(__func__,"ModemStatus = %i\n",*pModemStatus);
         	PROCFINISH;
         	return rezult;
         }

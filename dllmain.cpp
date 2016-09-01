@@ -11,14 +11,10 @@
 //=================================================================
 
 
-
 #include"lib_work.h"
 
 #include <windows.h>
 #include <stdio.h>
-
-
-
 
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
@@ -50,3 +46,4 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 	/* Return TRUE on success, FALSE on failure */
 	return TRUE;
 }
+
