@@ -55,7 +55,7 @@ void file_process_func(const char *func_name, bool start){
 
 void file_process_data10(const char *func_name,const char *string,int value){
 	if(f==0)return;
-	fprintf(f,"  <%s>:",func_name);
+	fprintf(f,"  <%s>: ",func_name);
 	fprintf(f,string,value);
 	fflush(f);
 	return;
@@ -66,7 +66,7 @@ void file_process_buffer16(const char *func_name, unsigned int data_size, unsign
 	for(int i=0,j=0;i<data_size;i++){
 		if(j==0)fprintf(f,"  <%s>:",func_name);
 		fprintf(f," %02x",data_value[i]);
-		if(j==15)fprintf(f,"\n");
+		if((j==15)||(i==(data_size-1)))fprintf(f,"\n");
 		(j+=1)&=0xf;
 	}
 	fflush(f);

@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=3
 CompilerSettings=0000000100000000000000000
-UnitCount=8
+UnitCount=7
 
 [VersionInfo]
 Major=1
@@ -50,16 +50,6 @@ ProductVersion=1.0.0.0
 AutoIncBuildNr=0
 SyncProduct=1
 
-[Unit2]
-FileName=dll.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit1]
 FileName=dllmain.cpp
 CompileCpp=1
@@ -71,16 +61,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=lib_work.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit5]
 FileName=ftd2xx.h
 CompileCpp=1
 Folder=
@@ -90,7 +70,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
+[Unit5]
 FileName=ftdi_procs.cpp
 CompileCpp=1
 Folder=
@@ -100,7 +80,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit7]
+[Unit6]
 FileName=out_file.cpp
 CompileCpp=1
 Folder=
@@ -110,8 +90,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit7]
+FileName=out_file.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit3]
-FileName=lib_work.cpp
+FileName=lib_work.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -122,6 +112,16 @@ BuildCmd=
 
 [Unit8]
 FileName=out_file.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=lib_work.cpp
 CompileCpp=1
 Folder=
 Compile=1

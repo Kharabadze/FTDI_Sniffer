@@ -268,7 +268,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
         	ft_h_b_b_b a = (ft_h_b_b_b)procedures[8];
         	file_process_data10(__func__,"WordLength = %i\n",WordLength);
         	file_process_data10(__func__,"StopBits = %i\n",StopBits);
-			file_process_data10(__func__,"Parity = %i\n",WordLength);
+			file_process_data10(__func__,"Parity = %i\n",Parity);
         	rezult = a(ftHandle, WordLength,
 				StopBits, Parity
 			);
