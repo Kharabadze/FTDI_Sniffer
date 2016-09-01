@@ -1,3 +1,15 @@
+//=================================================================
+/// \file       out_file.cpp
+/// \brief      DLL for sniffer of FTDI FTD2XX
+/// \author     David Kharabadze
+/// \version    16354a
+/// \copyright  GNU General Public License v.3
+//=================================================================
+//   ! " # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ?
+// @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _
+// ' a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~
+//=================================================================
+
 #include"out_file.h"
 
 #include<stdio.h>
@@ -19,6 +31,9 @@ void file_open(void){
 	}
 	fclose(f);
 	f=fopen(file_name,"wt");
+	fprintf(f,"FTDI Sniffer (x%i)\n",8*sizeof(void*));
+	fprintf(f,"Build: %s, %s\n", __DATE__,__TIME__);
+	fprintf(f,"-----------------------------\n");
 	return;
 }
 
@@ -40,14 +55,20 @@ void file_process_func(const char *func_name, bool start){
 
 void file_process_data10(const char *func_name,const char *string,int value){
 	if(f==0)return;
-	fprintf(f,"<%s>:",func_name);
+	fprintf(f,"  <%s>:",func_name);
 	fprintf(f,string,value);
 	fflush(f);
 	return;
 }
 
-void file_process_byte16(const char *string,unsigned char value){
+void file_process_buffer16(const char *func_name, unsigned int data_size, unsigned char *data_value){
 	if(f==0)return;
+	for(int i=0,j=0;i<data_size;i++){
+		if(j==0)fprintf(f,"  <%s>:",func_name);
+		fprintf(f," %02x",data_value[i]);
+		if(j==15)fprintf(f,"\n");
+		(j+=1)&=0xf;
+	}
 	fflush(f);
 	return;
 }

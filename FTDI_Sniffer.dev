@@ -22,7 +22,7 @@ OverrideOutput=0
 OverrideOutputName=FTDI_Sniffer.dll
 HostApplication=
 UseCustomMakefile=1
-CustomMakefile=UserMake_x64.win
+CustomMakefile=UserMake_x86.win
 CommandLine=
 Folders=
 IncludeVersionInfo=0
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=llib_work.cpp
+FileName=lib_work.cpp
 CompileCpp=1
 Folder=
 Compile=1

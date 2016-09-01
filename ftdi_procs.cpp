@@ -247,6 +247,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_d a = (ft_h_d)procedures[7];
+        	file_process_data10(__func__,"BaudRate = %i\n",BaudRate);
         	rezult = a(ftHandle, BaudRate);
         	PROCFINISH;
         	return rezult;
@@ -259,6 +260,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_w a = (ft_h_w)procedures[26];
+        	file_process_data10(__func__,"Divisor = %i\n",Divisor);
         	rezult = a(ftHandle, Divisor);
         	PROCFINISH;
         	return rezult;
@@ -273,6 +275,9 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_b_b_b a = (ft_h_b_b_b)procedures[8];
+        	file_process_data10(__func__,"WordLength = %i\n",WordLength);
+        	file_process_data10(__func__,"StopBits = %i\n",StopBits);
+			file_process_data10(__func__,"Parity = %i\n",WordLength);
         	rezult = a(ftHandle, WordLength,
 				StopBits, Parity
 			);
@@ -400,6 +405,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_d_d a = (ft_h_d_d)procedures[17];
+        	file_process_data10(__func__,"ReadTimeout = %i\n",ReadTimeout);
+        	file_process_data10(__func__,"WriteTimeout = %i\n",WriteTimeout);
         	rezult = a(ftHandle, ReadTimeout, WriteTimeout);
         	PROCFINISH;
         	return rezult;
@@ -413,6 +420,8 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
         	PROCSTART;
         	ft_h_pd a = (ft_h_pd)procedures[18];
         	rezult = a(ftHandle,dwRxBytes);
+        	if(dwRxBytes)
+        		file_process_data10(__func__,"RxBytes = %i\n",*dwRxBytes);
         	PROCFINISH;
         	return rezult;
         }
@@ -688,6 +697,7 @@ typedef BOOL _stdcall (*ftb_fth_po_pd_b)(
 		){
         	PROCSTART;
         	ft_h_b a = (ft_h_b)procedures[29];
+        	file_process_data10(__func__,"ucLatency = %i\n",ucLatency);
         	rezult = a(ftHandle, ucLatency);
         	PROCFINISH;
         	return rezult;
